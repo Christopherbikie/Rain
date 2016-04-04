@@ -89,3 +89,6 @@ local.properties
 
 # Code Recommenders
 .recommenders/
+
+### paint.net ###
+.pdn

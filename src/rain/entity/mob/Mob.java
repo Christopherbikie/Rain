@@ -3,7 +3,7 @@ package rain.entity.mob;
 import rain.entity.Entity;
 import rain.graphics.Sprite;
 
-public abstract class Mob extends Entity{
+public abstract class Mob extends Entity {
 	protected Sprite sprite;
 	protected int dir = 0;
 	protected boolean moving = false;
@@ -30,5 +30,13 @@ public abstract class Mob extends Entity{
 	
 	public void render() {
 		
+	}
+	
+	public int getXTile() {
+		return x / 16;
+	}
+	
+	public int getYTile() {
+		return y / 16;
 	}
 }

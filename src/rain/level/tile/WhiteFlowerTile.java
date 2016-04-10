@@ -2,12 +2,13 @@ package rain.level.tile;
 
 import rain.graphics.Screen;
 import rain.graphics.Sprite;
+import rain.level.tile.Tile;
 
-public class GrassTile extends Tile {
+public class WhiteFlowerTile extends Tile {
 
-	public static final int MAP_COLOUR = 0xFF00FF00;
+	public static final int MAP_COLOUR = 0xFFDFDFDF;
 
-	public GrassTile(Sprite sprite) {
+	public WhiteFlowerTile(Sprite sprite) {
 		super(sprite);
 	}
 	

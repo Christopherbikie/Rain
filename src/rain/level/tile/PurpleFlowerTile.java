@@ -3,11 +3,11 @@ package rain.level.tile;
 import rain.graphics.Screen;
 import rain.graphics.Sprite;
 
-public class GrassTile extends Tile {
+public class PurpleFlowerTile extends Tile {
 
-	public static final int MAP_COLOUR = 0xFF00FF00;
+	public static final int MAP_COLOUR = 0xFFAE72C2;
 
-	public GrassTile(Sprite sprite) {
+	public PurpleFlowerTile(Sprite sprite) {
 		super(sprite);
 	}
 	

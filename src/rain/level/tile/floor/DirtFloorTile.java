@@ -1,13 +1,14 @@
-package rain.level.tile;
+package rain.level.tile.floor;
 
 import rain.graphics.Screen;
 import rain.graphics.Sprite;
+import rain.level.tile.Tile;
 
-public class GrassTile extends Tile {
+public class DirtFloorTile extends Tile {
 
-	public static final int MAP_COLOUR = 0xFF00FF00;
+	public static final int MAP_COLOUR = 0xFFB98B5E;
 
-	public GrassTile(Sprite sprite) {
+	public DirtFloorTile(Sprite sprite) {
 		super(sprite);
 	}
 	

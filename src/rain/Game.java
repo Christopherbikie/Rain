@@ -13,12 +13,12 @@ import rain.entity.mob.Player;
 import rain.graphics.Screen;
 import rain.input.Keyboard;
 import rain.level.Level;
-import rain.level.RandomLevel;
+import rain.level.tile.TileCoordinate;
 
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
 
-	public static int width = 300;
+	public static int width = 500;
 	public static int height = width / 16 * 9;
 	public static int scale = 3;
 	public static String title = "Rain";
@@ -42,8 +42,10 @@ public class Game extends Canvas implements Runnable {
 		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
-		level = new RandomLevel(64, 64);
-		player = new Player(key);
+//		level = new RandomLevel(16, 16);
+		level = Level.spawn;
+		TileCoordinate playerSpawn = new TileCoordinate(16, 16);
+		player = new Player(playerSpawn.getX(), playerSpawn.getY(), key);
 		
 		addKeyListener(key);
 	}
@@ -107,8 +109,11 @@ public class Game extends Canvas implements Runnable {
 		screen.clear();
 		int xScroll = player.x - screen.width / 2;
 		int yScroll = player.y - screen.height / 2;
-		level.render(xScroll, yScroll, screen);
-		player.render(screen);
+		level.render(xScroll, yScroll, 0, screen, player);
+		level.render(xScroll, yScroll, 1, screen, player);
+//		player.render(screen);
+		level.render(xScroll, yScroll, 2, screen, player);
+		level.render(xScroll, yScroll, 3, screen, player);
 
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];

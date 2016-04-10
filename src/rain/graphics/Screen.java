@@ -5,14 +5,11 @@ import rain.level.tile.Tile;
 //import java.util.Random;
 
 public class Screen {
-	public final int MAP_SIZE = 8;
-	public final int MAP_SIZE_MASK = MAP_SIZE - 1;
 	public final int TILE_WIDTH = 4;
 	public final int TILE_HEIGHT = 4;
 	
 	public int width, height, xOffset, yOffset;
 	public int[] pixels;
-	public int[] tiles = new int[MAP_SIZE * MAP_SIZE];
 
 //	private Random random = new Random();
 
@@ -35,31 +32,32 @@ public class Screen {
 	public void renderTile(int xp, int yp, Tile tile) {
 		xp -= xOffset;
 		yp -= yOffset;
-		for (int y = 0; y < tile.sprite.SIZE; y++) {
+		for (int y = 0; y < tile.sprite.HEIGHT; y++) {
 			int ya = y + yp;
-			for (int x = 0; x < tile.sprite.SIZE; x++) {
+			for (int x = 0; x < tile.sprite.WIDTH; x++) {
 				int xa = x + xp;
-				if (xa < -tile.sprite.SIZE || xa >= width || ya < 0 || ya >= height) break;
+				if (xa < -tile.sprite.WIDTH || xa >= width || ya < 0 || ya >= height) break;
 				if (xa < 0) xa = 0;
-				pixels[xa + ya * width] = tile.sprite.pixels[x + y * tile.sprite.SIZE];
+				if (tile.sprite.pixels[x + y * tile.sprite.WIDTH] != 0xffff00ff) pixels[xa + ya * width] = tile.sprite.pixels[x + y * tile.sprite.WIDTH];
 			}
 		}
 	}
 	
-	public void renderPlayer(int xp, int yp, Sprite sprite, int flip) {
+	//Flip parameter for not used
+	public void renderPlayer(int xp, int yp, Sprite sprite/*, int flip*/) {
 		xp -= xOffset;
 		yp -= yOffset;
-		for (int y = 0; y < 32; y++) {
+		for (int y = 0; y < 16; y++) {
 			int ya = y + yp;
 			int ys = y;
-			if (flip == 2 || flip == 3) ys = 31 - y;
-			for (int x = 0; x < 32; x++) {
+//			if (flip == 2 || flip == 3) ys = 31 - y;
+			for (int x = 0; x < 16; x++) {
 				int xa = x + xp;
 				int xs = x;
-				if (flip == 1 || flip == 3) xs = 31 - x;
-				if (xa < -32 || xa >= width || ya < 0 || ya >= height) break;
+//				if (flip == 1 || flip == 3) xs = 31 - x;
+				if (xa < -16 || xa >= width || ya < 0 || ya >= height) break;
 				if (xa < 0) xa = 0;
-				int col = sprite.pixels[xs + ys * 32];
+				int col = sprite.pixels[xs + ys * 16];
 				if (col != 0xffff00ff) pixels[xa + ya * width] = col;
 			}
 		}

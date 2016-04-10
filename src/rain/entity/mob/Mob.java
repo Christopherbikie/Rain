@@ -32,6 +32,11 @@ public abstract class Mob extends Entity {
 		
 	}
 	
+	protected void shoot(int x, int y, double dir) {
+		dir *= 180 / Math.PI;
+		System.out.println(dir);
+	}
+	
 	private boolean collision(int xa, int ya) {
 		for (int c = 0; c < 4; c++) {
 			int xt = ((x + xa) + c % 2 * 17 - 17) / 16;

@@ -1,8 +1,10 @@
 package rain.entity.mob;
 
+import rain.Game;
 import rain.graphics.Screen;
 import rain.graphics.Sprite;
 import rain.input.Keyboard;
+import rain.input.Mouse;
 
 public class Player extends Mob {
 	private Keyboard input;
@@ -31,6 +33,13 @@ public class Player extends Mob {
 		if (input.down) ya++;
 		if (input.left) xa--;
 		if (input.right) xa++;
+		
+		if (Mouse.getMouseButton() == 1) {
+			double dx = Mouse.getMouseX() - Game.getWindowWidth() / 2;
+			double dy = Mouse.getMouseY() - Game.getWindowHeight() / 2;
+			double dir = Math.atan2(dy, dx);
+			shoot(x, y, dir);
+		}
 		
 		if (xa != 0 || ya != 0) {
 			move(xa, ya);

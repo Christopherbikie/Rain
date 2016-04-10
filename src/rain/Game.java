@@ -1,7 +1,9 @@
 package rain;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -12,16 +14,17 @@ import javax.swing.JFrame;
 import rain.entity.mob.Player;
 import rain.graphics.Screen;
 import rain.input.Keyboard;
+import rain.input.Mouse;
 import rain.level.Level;
 import rain.level.tile.TileCoordinate;
 
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
 
-	public static int width = 500;
-	public static int height = width / 16 * 9;
-	public static int scale = 3;
-	public static String title = "Rain";
+	private static int width = 500;
+	private static int height = width / 16 * 9;
+	private static int scale = 3;
+	private static String title = "Rain";
 
 	private Thread thread;
 	private JFrame frame;
@@ -49,6 +52,10 @@ public class Game extends Canvas implements Runnable {
 		player.init(level);
 		
 		addKeyListener(key);
+		
+		Mouse mouse = new Mouse();
+		addMouseListener(mouse);
+		addMouseMotionListener(mouse);
 	}
 
 	public synchronized void start() {
@@ -112,7 +119,6 @@ public class Game extends Canvas implements Runnable {
 		int yScroll = player.y - screen.height / 2;
 		level.render(xScroll, yScroll, 0, screen, player);
 		level.render(xScroll, yScroll, 1, screen, player);
-//		player.render(screen);
 		level.render(xScroll, yScroll, 2, screen, player);
 		level.render(xScroll, yScroll, 3, screen, player);
 
@@ -122,8 +128,19 @@ public class Game extends Canvas implements Runnable {
 
 		Graphics g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		g.setColor(Color.WHITE);
+		g.setFont(new Font("Verdana", 0, 50));
+		if (Mouse.getMouseButton() != -1) g.drawString("Button: " + Mouse.getMouseButton(), 80, 80);
 		g.dispose();
 		bs.show();
+	}
+	
+	public static int getWindowWidth() {
+		return width * scale;
+	}
+	
+	public static int getWindowHeight() {
+		return height * scale;
 	}
 
 	public static void main(String[] args) {

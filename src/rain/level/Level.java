@@ -1,5 +1,9 @@
 package rain.level;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import rain.entity.Entity;
 import rain.entity.mob.Player;
 import rain.graphics.Screen;
 import rain.level.tile.BlueFlowerTile;
@@ -29,6 +33,8 @@ public class Level {
 	protected int[] tiles3;
 	protected int[] tiles4;
 	
+	private List<Entity> entities = new ArrayList<Entity>();
+	
 	public static Level spawn = new SpawnLevel("/levels/level1.png", "/levels/level2.png", "/levels/level3.png", "/levels/level4.png");
 
 	public Level(int width, int height) {
@@ -52,7 +58,12 @@ public class Level {
 	}
 
 	public void update() {
-
+		for (Entity e : entities)
+			e.update();
+	}
+	
+	public void add(Entity e) {
+		entities.add(e);
 	}
 
 	public void render(int xScroll, int yScroll, int layer, Screen screen, Player player) {
@@ -85,6 +96,9 @@ public class Level {
 			
 			for (int x = x0; x < x1; x++)
 				getTile(x, y, layer).render(x, y, screen);
+
+			for (Entity e : entities)
+				e.render(screen);
 		}
 	}
 	

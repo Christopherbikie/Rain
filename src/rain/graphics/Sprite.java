@@ -14,9 +14,9 @@ public class Sprite {
 	public int[] pixels;
 	private SpriteSheet sheet;
 
+	//Tiles
 	public static Sprite grass = new Sprite(16, 16, 0, 0, SpriteSheet.tiles);
 	
-	//Directions are where grass is located relative to the tile
 	public static Sprite water = new Sprite(16, 16, 3, 1, SpriteSheet.water);
 	public static Sprite waterGrassNorth = new Sprite(16, 16, 3, 0, SpriteSheet.water);
 	public static Sprite waterGrassEast = new Sprite(16, 16, 4, 1, SpriteSheet.water);
@@ -65,7 +65,6 @@ public class Sprite {
 	public static Sprite waterGrassAllSides = new Sprite(16, 16, 0, 0, SpriteSheet.water);
 	public static Sprite waterGrassAllCorners = new Sprite(16, 16, 1, 0, SpriteSheet.water);
 	
-	//Path directions are places where another dirtPath exists, listed clockwise.
 	public static Sprite dirtPath = new Sprite(16, 16, 3 + 5 * DirtPathTile.TEXTURE_NUMBER, 5, SpriteSheet.paths);
 	public static Sprite dirtPathNorth = new Sprite(16, 16, 0 + 5 * DirtPathTile.TEXTURE_NUMBER, 4, SpriteSheet.paths);
 	public static Sprite dirtPathEast = new Sprite(16, 16, 1 + 5 * DirtPathTile.TEXTURE_NUMBER, 5, SpriteSheet.paths);
@@ -231,9 +230,13 @@ public class Sprite {
 	public static Sprite flowerWhite = new Sprite(16, 16, 4, 0, SpriteSheet.tiles);
 	public static Sprite voidSprite = new Sprite(16, 16, 0xFFFF00FF);
 	
+	//Player
 	public static Sprite player = new Sprite(16, 16, 0, 13, SpriteSheet.tiles);
 	public static Sprite playerWalking1 = new Sprite(16, 16, 0, 14, SpriteSheet.tiles);
 	public static Sprite playerWalking2 = new Sprite(16, 16, 0, 15, SpriteSheet.tiles);
+	
+	//Projectiles
+	public static Sprite arrow = new Sprite(16, 16, 0, 0, SpriteSheet.arrows);
 	
 //	Old King Cherno Sprite
 //	public static Sprite playerUp = new Sprite(32, 0, 5, SpriteSheet.tiles);

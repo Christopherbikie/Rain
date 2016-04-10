@@ -18,6 +18,8 @@ public class SpriteSheet {
 	public static SpriteSheet doors = new SpriteSheet("/textures/sheets/doors.png", 128, 48);
 	public static SpriteSheet tallWindows = new SpriteSheet("/textures/sheets/tallwindows.png", 64, 32);
 	public static SpriteSheet windows = new SpriteSheet("/textures/sheets/windows.png", 96, 16);
+
+	public static SpriteSheet arrows = new SpriteSheet("/textures/sheets/arrows.png", 64, 64);
 	
 	public SpriteSheet(String path, int width, int height) {
 		this.path = path;

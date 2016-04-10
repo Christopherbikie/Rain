@@ -1,5 +1,6 @@
 package rain.graphics;
 
+import rain.entity.projectile.Projectile;
 import rain.level.tile.Tile;
 
 //import java.util.Random;
@@ -39,6 +40,20 @@ public class Screen {
 				if (xa < -tile.sprite.WIDTH || xa >= width || ya < 0 || ya >= height) break;
 				if (xa < 0) xa = 0;
 				if (tile.sprite.pixels[x + y * tile.sprite.WIDTH] != 0xffff00ff) pixels[xa + ya * width] = tile.sprite.pixels[x + y * tile.sprite.WIDTH];
+			}
+		}
+	}
+	
+	public void renderProjectile(int xp, int yp, Projectile p) {
+		xp -= xOffset;
+		yp -= yOffset;
+		for (int y = 0; y < p.getSprite().HEIGHT; y++) {
+			int ya = y + yp;
+			for (int x = 0; x < p.getSprite().WIDTH; x++) {
+				int xa = x + xp;
+				if (xa < -p.getSprite().WIDTH || xa >= width || ya < 0 || ya >= height) break;
+				if (xa < 0) xa = 0;
+				if (p.getSprite().pixels[x + y * p.getSprite().WIDTH] != 0xffff00ff) pixels[xa + ya * width] = p.getSprite().pixels[x + y * p.getSprite().WIDTH];
 			}
 		}
 	}

@@ -1,6 +1,7 @@
 package rain.entity.mob;
 
 import rain.Game;
+import rain.entity.projectile.Projectile;
 import rain.graphics.Screen;
 import rain.graphics.Sprite;
 import rain.input.Keyboard;
@@ -35,19 +36,28 @@ public class Player extends Mob {
 		if (input.right) xa++;
 		
 		if (Mouse.getMouseButton() == 1) {
-			double dx = Mouse.getMouseX() - Game.getWindowWidth() / 2;
-			double dy = Mouse.getMouseY() - Game.getWindowHeight() / 2;
-			double dir = Math.atan2(dy, dx);
+			double dx = Mouse.getMouseX() - Game.getWindowWidth() / 2 + 16;
+			double dy = Mouse.getMouseY() - Game.getWindowHeight() / 2 + 16;
+			double dir = Math.atan2(dy + 8, dx + 8);
 			shoot(x, y, dir);
 		}
+
+		clear();
 		
 		if (xa != 0 || ya != 0) {
 			move(xa, ya);
 			walking = true;
 		} else
 			walking = false;
+		System.out.println(projectiles.size());
 	}
-	
+
+	private void clear() {
+		for (Projectile p : projectiles)
+			if (p.isRemoved())
+				projectiles.remove(p);
+	}
+
 	public void render(Screen screen) {
 		//Code for rendering 32p directional sprite
 //		if (dir == 0) {

@@ -23,9 +23,17 @@ public class Arrow extends Projectile{
 	protected void move() {
 		x += nx;
 		y += ny;
+		if (distance() > range)
+			remove();
 	}
-	
+
+	private double distance() {
+		double distance = 0;
+		distance = Math.sqrt(Math.abs((xOrigin - x) * (xOrigin - x)) + Math.abs((yOrigin - y) * (yOrigin - y)));
+		return distance;
+	}
+
 	public void render(Screen screen) {
-		screen.renderProjectile(x, y, this);
+		screen.renderProjectile((int) x - 16, (int) y - 16, this);
 	}
 }

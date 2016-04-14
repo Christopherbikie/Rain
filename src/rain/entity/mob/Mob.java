@@ -2,6 +2,7 @@ package rain.entity.mob;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import rain.entity.Entity;
 import rain.entity.projectile.Arrow;
@@ -15,7 +16,7 @@ public abstract class Mob extends Entity {
 	protected int dir = 0;
 	protected boolean moving = false;
 	
-	protected List<Projectile> projectiles = new ArrayList<Projectile>();
+	protected List<Projectile> projectiles = new CopyOnWriteArrayList<Projectile>();
 	
 	public void move(int xa, int ya) {
 		if (xa != 0 && ya != 0) {

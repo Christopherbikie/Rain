@@ -1,4 +1,4 @@
-![](http://imgur.com/wKaJcXB)
+![](http://imgur.com/wKaJcXB.png)
 
 #Rain
 Rain is a basic RPG game made with Java and LWJGL 2.9 with not all too much in it.

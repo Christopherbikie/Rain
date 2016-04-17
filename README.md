@@ -2,7 +2,7 @@
 
 #Rain
 
-Rain is a basic RPG game made with Java and LWJGL 2.9 with not all too much in it.
+Rain is a basic RPG game made with Java without using any librarys such as LWJGL with not all too much in it.
 If you were looking for something useful, you've come to precisely the wrong place.
 
 ##Features:

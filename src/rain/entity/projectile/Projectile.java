@@ -3,6 +3,8 @@ package rain.entity.projectile;
 import rain.entity.Entity;
 import rain.graphics.Sprite;
 
+import java.util.Random;
+
 public abstract class Projectile extends Entity {
 	
 	protected final int xOrigin, yOrigin;
@@ -10,8 +12,10 @@ public abstract class Projectile extends Entity {
 	protected Sprite sprite;
 	protected float x, y;
 	protected double nx, ny;
-	protected double speed, rateOfFire, range, damage;
+	protected double speed, range, damage;
 	protected double distance;
+
+	protected final Random random = new Random();
 
 	public Projectile(int x, int y, double dir) {
 		this.x = x;

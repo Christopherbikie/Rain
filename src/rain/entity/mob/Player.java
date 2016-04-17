@@ -1,6 +1,7 @@
 package rain.entity.mob;
 
 import rain.Game;
+import rain.entity.projectile.Arrow;
 import rain.entity.projectile.Projectile;
 import rain.graphics.Screen;
 import rain.graphics.Sprite;
@@ -12,7 +13,9 @@ public class Player extends Mob {
 	private Sprite sprite;
 	public int anim = 0;
 	public boolean walking = false;
-	
+
+	private int fireRate = 0;
+
 	public Player(Keyboard input) {
 		this.input = input;
 		sprite = Sprite.player;
@@ -24,9 +27,12 @@ public class Player extends Mob {
 		this.input = input;
 		sprite = Sprite.player;
 		//enum enum enum
+		fireRate = Arrow.FIRE_RATE;
 	}
 	
 	public void update() {
+		if (fireRate > 0)
+			fireRate--;
 		int xa = 0, ya = 0;
 		if (anim < 7500) anim++;
 		else anim = 0;
@@ -35,11 +41,12 @@ public class Player extends Mob {
 		if (input.left) xa--;
 		if (input.right) xa++;
 		
-		if (Mouse.getMouseButton() == 1) {
+		if (Mouse.getMouseButton() == 1 && fireRate <= 0) {
 			double dx = Mouse.getMouseX() - Game.getWindowWidth() / 2 + 16;
 			double dy = Mouse.getMouseY() - Game.getWindowHeight() / 2 + 16;
 			double dir = Math.atan2(dy + 8, dx + 8);
 			shoot(x, y, dir);
+			fireRate = Arrow.FIRE_RATE;
 		}
 
 		clear();
@@ -49,13 +56,12 @@ public class Player extends Mob {
 			walking = true;
 		} else
 			walking = false;
-		System.out.println(projectiles.size());
 	}
 
 	private void clear() {
-		for (Projectile p : projectiles)
+		for (Projectile p : level.getProjectiles())
 			if (p.isRemoved())
-				projectiles.remove(p);
+				level.getProjectiles().remove(p);
 	}
 
 	public void render(Screen screen) {

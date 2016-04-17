@@ -5,12 +5,13 @@ import rain.graphics.Sprite;
 
 public class Arrow extends Projectile{
 
+	public static final int FIRE_RATE = 45; //Higher is slower
+
 	public Arrow(int x, int y, double dir) {
 		super(x, y, dir);
-		range = 200;
+		range = 100 + random.nextInt(50);
 		damage = 20;
 		speed = 4;
-		rateOfFire = 15;
 		sprite = Sprite.arrow;
 		nx = speed * Math.cos(angle);
 		ny = speed * Math.sin(angle);

@@ -1,29 +1,20 @@
 package rain.level;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import rain.entity.Entity;
 import rain.entity.mob.Player;
+import rain.entity.projectile.Projectile;
 import rain.graphics.Screen;
-import rain.level.tile.BlueFlowerTile;
-import rain.level.tile.GrassTile;
-import rain.level.tile.PurpleFlowerTile;
-import rain.level.tile.RedFlowerTile;
-import rain.level.tile.Tile;
-import rain.level.tile.WaterTile;
-import rain.level.tile.WhiteFlowerTile;
-import rain.level.tile.buildings.Door;
-import rain.level.tile.buildings.NormalWall;
-import rain.level.tile.buildings.NormalWallBase;
-import rain.level.tile.buildings.NormalWallTop;
-import rain.level.tile.buildings.Window;
-import rain.level.tile.buildings.WindowTall;
+import rain.level.tile.*;
+import rain.level.tile.buildings.*;
 import rain.level.tile.floor.DirtFloorTile;
 import rain.level.tile.floor.SandFloorTile;
 import rain.level.tile.floor.StoneFloorTile;
 import rain.level.tile.path.DirtPathTile;
 import rain.level.tile.path.GravelPathTile;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Level {
 	protected int width, height, layers = 0;
@@ -34,7 +25,8 @@ public class Level {
 	protected int[] tiles4;
 	
 	private List<Entity> entities = new ArrayList<Entity>();
-	
+	private List<Projectile> projectiles = new CopyOnWriteArrayList<Projectile>();
+
 	public static Level spawn = new SpawnLevel("/levels/level1.png", "/levels/level2.png", "/levels/level3.png", "/levels/level4.png");
 
 	public Level(int width, int height) {
@@ -60,10 +52,20 @@ public class Level {
 	public void update() {
 		for (Entity e : entities)
 			e.update();
+		for (Projectile p : projectiles)
+			p.update();
+	}
+
+	public List<Projectile> getProjectiles() {
+		return projectiles;
 	}
 	
 	public void add(Entity e) {
 		entities.add(e);
+	}
+
+	public void addProjectile(Projectile p) {
+		projectiles.add(p);
 	}
 
 	public void render(int xScroll, int yScroll, int layer, Screen screen, Player player) {
@@ -99,6 +101,8 @@ public class Level {
 
 			for (Entity e : entities)
 				e.render(screen);
+			for (Projectile p : projectiles)
+				p.render(screen);
 		}
 	}
 	

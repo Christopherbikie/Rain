@@ -16,8 +16,6 @@ public abstract class Mob extends Entity {
 	protected int dir = 0;
 	protected boolean moving = false;
 	
-	protected List<Projectile> projectiles = new CopyOnWriteArrayList<Projectile>();
-	
 	public void move(int xa, int ya) {
 		if (xa != 0 && ya != 0) {
 			move(xa, 0);
@@ -43,8 +41,7 @@ public abstract class Mob extends Entity {
 	protected void shoot(int x, int y, double dir) {
 //		dir *= 180 / Math.PI;
 		Projectile p = new Arrow(x, y, dir);
-		projectiles.add(p);
-		level.add(p);
+		level.addProjectile(p);
 	}
 	
 	private boolean collision(int xa, int ya) {

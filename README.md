@@ -26,3 +26,5 @@ If you were looking for something useful, you've come to precisely the wrong pla
 [ ] A pause menu
 
 [ ] Lighting
+
+This project is based off TheCherno's Game Programming series found [here](https://www.youtube.com/playlist?list=PLlrATfBNZ98eOOCk2fOFg7Qg5yoQfFAdf/).
